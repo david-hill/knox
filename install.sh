@@ -20,6 +20,9 @@ else
     sudo cp etc/ntp.conf /etc
     sudo systemctl restart ntpd
     sudo systemctl enable ntpd
+    sudo cp etc/pki/tls/certs/* /etc/pki/tls/certs/
+    sudo cp etc/NetworkManager/system-connections/* /etc/NetworkManager/system-connections
+    sudo systemctl restart NetworkManager
     rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Music/* /home/dhill/Music/
     rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Documents/* /home/dhill/Documents/
     rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Desktop/* /home/dhill/Desktop/
