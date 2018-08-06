@@ -10,13 +10,16 @@ if ! $(grep -qi rawhide /etc/redhat-release) ; then
 else
     sudo systemctl enable fstrim.service
     sudo systemctl start fstrim.service
-    timedatectl set-timezone America/Montreal
-    hostnamectl set-hostname knox.orion
+    sudo timedatectl set-timezone America/Montreal
+    sudo hostnamectl set-hostname knox.orion
     sudo yum install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-rawhide.noarch.rpm
     sudo yum install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-rawhide.noarch.rpm
     sudo yum install -y terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc meson perl-ExtUtils-Embed perl-devel dbus-glib-devel gtk2-devel iso-codes-devel libcanberra-devel libnotify-devel pciutils-devel libproxy-devel lua-devel openssl-devel python3-devel jenkins ntpdate ntp
     sudo cp root/.vimrc /root
     sudo cp home/dhill/.vimrc /home/dhill
+    sudo cp etc/ntp.conf /etc
+    sudo systemctl restart ntpd
+    sudo systemctl enable ntpd
     rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Music/* /home/dhill/Music/
     rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Documents/* /home/dhill/Documents/
     rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Desktop/* /home/dhill/Desktop/
