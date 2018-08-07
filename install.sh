@@ -30,4 +30,14 @@ else
     rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Downloads/* /home/dhill/Downloads/
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.27:/var/lib/jenkins/* /var/lib/jenkins/
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.27:/home/jenkins/* /home/jenkins/
+    cd rpms
+    for package in *.rpm; do
+      sudo yum install -y $package
+    done
+    sudo yum install -y flash-player-ppapi
+    mkdir tmp
+    tar zxvf *.gz -C tmp
+    mv tmp/libflashplayer.so /usr/lib64/mozilla/plugins
+    rm -rf tmp
+    cp /usr/lib64/flash-plugin/libpepflashplayer.so /usr/lib64/mozilla/plugins
 fi
