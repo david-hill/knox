@@ -38,6 +38,10 @@ else
     mkdir tmp
     tar zxvf *.gz -C tmp
     sudo mv tmp/libflashplayer.so /usr/lib64/mozilla/plugins
+    cp linux-brprinter-installer-2.2.0-1.gz tmp/
+    gunzip -c linux-brprinter-installer-2.2.0-1.gz > tmp/linux-brprinter-installer-2.2.0-1
+    chmod 755 tmp/linux-brprinter-installer-2.2.0-1
+    echo "Y" | sudo tmp/./linux-brprinter-installer-2.2.0-1 dcp-7030
     rm -rf tmp
     sudo cp /usr/lib64/flash-plugin/libpepflashplayer.so /usr/lib64/mozilla/plugins
     sudo cp etc/selinux/config /etc/selinux
