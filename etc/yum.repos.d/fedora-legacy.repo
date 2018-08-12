@@ -1,0 +1,50 @@
+[fedora25]
+name=Fedora 25 - $basearch
+failovermethod=priority
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-25&arch=$basearch
+enabled=1
+metadata_expire=7d
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-25-$basearch
+skip_if_unavailable=True
+
+[fedora26]
+name=Fedora 26 - $basearch
+failovermethod=priority
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-26&arch=$basearch
+enabled=1
+metadata_expire=7d
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-26-$basearch
+skip_if_unavailable=True
+
+[fedora27]
+name=Fedora 27 - $basearch
+failovermethod=priority
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-27&arch=$basearch
+enabled=1
+metadata_expire=7d
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-27-$basearch
+skip_if_unavailable=True
+
+[fedora28]
+name=Fedora 28 - $basearch
+failovermethod=priority
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-28&arch=$basearch
+enabled=1
+metadata_expire=7d
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-28-$basearch
+skip_if_unavailable=True
+
+[fedora29]
+name=Fedora 29 - $basearch
+failovermethod=priority
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-29&arch=$basearch
+enabled=1
+metadata_expire=7d
+gpgcheck=1
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-29-$basearch
+skip_if_unavailable=True
+
