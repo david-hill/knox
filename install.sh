@@ -37,7 +37,9 @@ else
     sudo yum install -y flash-player-ppapi
     mkdir tmp
     tar zxvf *.gz -C tmp
-    mv tmp/libflashplayer.so /usr/lib64/mozilla/plugins
+    sudo mv tmp/libflashplayer.so /usr/lib64/mozilla/plugins
     rm -rf tmp
-    cp /usr/lib64/flash-plugin/libpepflashplayer.so /usr/lib64/mozilla/plugins
+    sudo cp /usr/lib64/flash-plugin/libpepflashplayer.so /usr/lib64/mozilla/plugins
+    sudo cp etc/selinux/config /etc/selinux
+    sudo setenforce 0
 fi
