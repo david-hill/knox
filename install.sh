@@ -51,4 +51,6 @@ else
     sudo setenforce 0
     sudo systemctl enable snmpd
     sudo systemctl start snmpd
+    sudo firewall-cmd --zone=internal --add-service snmp --permanent
+    sudo firewall-cmd --reload
 fi
