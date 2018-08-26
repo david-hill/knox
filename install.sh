@@ -1,6 +1,8 @@
 sudo dnf upgrade --refresh
 sudo dnf install dnf-plugin-system-upgrade
 sudo cp etc/yum.repos.d/* /etc/yum.repos.d
+sudo cp etc/sysconfig/network-scripts/* /etc/sysconfig/network-scripts
+sudo systemctl restart NetworkManager
 
 if ! $(grep -qi rawhide /etc/redhat-release) ; then
     sudo dnf system-upgrade download --refresh --releasever=rawhide --nogpgcheck
@@ -47,6 +49,6 @@ else
     sudo cp /usr/lib64/flash-plugin/libpepflashplayer.so /usr/lib64/mozilla/plugins
     sudo cp etc/selinux/config /etc/selinux
     sudo setenforce 0
-    systemctl enable snmpd
-    systemctl start snmpd
+    sudo systemctl enable snmpd
+    sudo systemctl start snmpd
 fi
