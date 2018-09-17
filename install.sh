@@ -16,7 +16,7 @@ else
     sudo hostnamectl set-hostname knox.orion
     sudo yum install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-rawhide.noarch.rpm
     sudo yum install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-rawhide.noarch.rpm
-    sudo yum install -y terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc meson perl-ExtUtils-Embed perl-devel dbus-glib-devel gtk2-devel iso-codes-devel libcanberra-devel libnotify-devel pciutils-devel libproxy-devel lua-devel openssl-devel python3-devel jenkins ntpdate ntp git-review nicotine+ transmission linphone sshuttle libvirt-client VirtualBox vinagre net-snmp net-snmp-utils
+    sudo yum install -y terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc meson perl-ExtUtils-Embed perl-devel dbus-glib-devel gtk2-devel iso-codes-devel libcanberra-devel libnotify-devel pciutils-devel libproxy-devel lua-devel openssl-devel python3-devel jenkins ntpdate ntp git-review nicotine+ transmission linphone sshuttle libvirt-client VirtualBox vinagre net-snmp net-snmp-utils icedtea-web
     sudo cp root/.vimrc /root
     sudo cp home/dhill/.vimrc /home/dhill
     sudo cp etc/ntp.conf /etc
@@ -52,6 +52,8 @@ else
     sudo setenforce 0
     sudo systemctl enable snmpd
     sudo systemctl start snmpd
+    sudo systemctl enable jenkins
+    sudo systemctl start jenkins
     sudo firewall-cmd --zone=internal --add-service snmp --permanent
     sudo firewall-cmd --zone=FedoraWorkstation --add-service snmp --permanent
     sudo firewall-cmd --reload
