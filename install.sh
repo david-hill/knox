@@ -54,6 +54,8 @@ else
     sudo systemctl start snmpd
     sudo systemctl enable jenkins
     sudo systemctl start jenkins
+    sudo systemctl enable sshd
+    sudo systemctl start sshd
     sudo firewall-cmd --zone=internal --add-service snmp --permanent
     sudo firewall-cmd --zone=FedoraWorkstation --add-service snmp --permanent
     sudo firewall-cmd --reload
