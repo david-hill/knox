@@ -59,6 +59,8 @@ else
     sudo systemctl start jenkins
     sudo systemctl enable sshd
     sudo systemctl start sshd
+    sudo systemctl enable shairport-sync
+    sudo systemctl start shairport-sync
     sudo firewall-cmd --zone=internal --add-service snmp --permanent
     sudo firewall-cmd --zone=FedoraWorkstation --add-service snmp --permanent
     sudo firewall-cmd --reload
