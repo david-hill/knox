@@ -9,15 +9,16 @@
 # Set LENGTH to 0 if you do not want the mouse pointer to actually move.
 # Set LENGTH to 1 if you want the mouse pointer to move just a tiny fraction.
 # Set LENGTH to e.g. 100 if you want to see more easily the mouse pointer move.
-LENGTH=3
+LENGTH=20
 #
 # Set DELAY to the desired number of seconds between each move of the mouse pointer.
 DELAY=60
 #
 while true
 do
-  for ANGLE in 0 90 180 270
+  for ANGLE in 0 90 180 90 0 270 180 270
   do
+    echo $ANGLE
     xdotool mousemove_relative --polar $ANGLE $LENGTH
     sleep $DELAY
   done
