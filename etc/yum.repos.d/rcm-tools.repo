@@ -3,4 +3,6 @@ name=RCM Tools for Fedora 26 (RPMs)
 baseurl=http://download.devel.redhat.com/rel-eng/RCMTOOLS/latest-RCMTOOLS-2-F-26/compose/Everything/$basearch/os/
 enabled=1
 gpgcheck=0
+skip_if_unavailable=True
+
 

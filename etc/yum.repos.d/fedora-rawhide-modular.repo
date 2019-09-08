@@ -29,7 +29,7 @@ repo_gpgcheck=0
 type=rpm
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-$releasever-$basearch
-skip_if_unavailable=False
+skip_if_unavailable=True
 
 [rawhide-modular-debuginfo]
 name=Fedora - Modular Rawhide - Debug
