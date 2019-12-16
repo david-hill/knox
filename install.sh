@@ -69,6 +69,7 @@ else
     sudo usermod -G libvirt dhill
     sudo cp etc/libvirt/libvirtd.conf /etc/libvirt
     sudo systemctl restart libvirtd
-    cp usr/lib/jvm/java-1.8.0-openjdk-1.8.0.192.b12-0.fc30.x86_64/jre/lib/security/java.security /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.192.b12-0.fc30.x86_64/jre/lib/security/java.security
-    cp etc/crypto-policies/back-ends/java.config /etc/crypto-policies/back-ends/java.config
+    sudo cp usr/lib/jvm/java-1.8.0-openjdk-1.8.0.192.b12-0.fc30.x86_64/jre/lib/security/java.security /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.192.b12-0.fc30.x86_64/jre/lib/security/java.security
+    sudo cp etc/crypto-policies/back-ends/java.config /etc/crypto-policies/back-ends/java.config
+    sudo usr/bin/google-chrome /usr/bin/google-chrome
 fi
