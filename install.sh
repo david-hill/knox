@@ -22,6 +22,7 @@ else
     sudo yum install -y terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc dbus-glib-devel gtk2-devel iso-codes-devel pciutils-devel lua-devel openssl-devel jenkins ntpdate ntp git-review nicotine+ transmission linphone sshuttle libvirt-client VirtualBox vinagre net-snmp net-snmp-utils icedtea-web tmux screen libnsl shairport-sync dnf-utils yum-utils nmap strace uptimed xdotool python3-reno libguestfs-tools python2-pyxattr python-pep8 python3-tox libpq-devel collectl mysql-server gimp meson perl-devel perl-ExtUtils-Embed libcanberra-devel dbus-glib-devel libnotify-devel libproxy-devel python3-devel
     sudo cp root/.vimrc /root
     sudo cp home/dhill/.vimrc /home/dhill
+    sudo cp home/dhill/.bash_profile /home/dhill
     sudo cp etc/ntp.conf /etc
     sudo cp etc/snmp/* /etc/snmp/
     sudo systemctl restart ntpd
