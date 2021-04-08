@@ -2,6 +2,11 @@ sudo dnf upgrade --refresh
 sudo dnf install dnf-plugin-system-upgrade
 sudo cp etc/yum.repos.d/* /etc/yum.repos.d
 sudo cp etc/sysconfig/network-scripts/* /etc/sysconfig/network-scripts
+sudo cp etc/krb5.conf /etc/krb5.conf
+
+mkdir -p /etc/opt/chrome/policies/managed
+cp etc/opt/chrome/policies/managed/* etc/opt/chrome/policies/managed
+
 sudo systemctl restart NetworkManager
 
 if ! $(grep -qi rawhide /etc/redhat-release) ; then
