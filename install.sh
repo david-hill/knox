@@ -16,6 +16,8 @@ if ! $(grep -qi rawhide /etc/redhat-release) ; then
     sudo dnf system-upgrade reboot # https://bugzilla.redhat.com/show_bug.cgi?id=1612547
 else
     wget https://password.corp.redhat.com/RH-IT-Root-CA.crt
+#    wget https://download.devel.redhat.com/rel-eng/RCMTOOLS/rcm-tools-fedora.repo
+#    sudo cp rcm-tools-fedora.repo /etc/yum.repos.d/
     sudo cp RH-IT-Root-CA.crt /etc/pki/ca-trust/source/anchors
     sudo update-ca-trust extract
     sudo systemctl enable fstrim.service
@@ -26,7 +28,7 @@ else
     sudo yum install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-rawhide.noarch.rpm
     sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-nvidia.repo
     sudo yum install -y https://download.devel.redhat.com/rel-eng/RCMTOOLS/RCMTOOLS-2.0-updates-F-33-20201007.0/compose/Everything/x86_64/os/Packages/brewkoji-1.24-1.fc33eng.noarch.rpm https://download.devel.redhat.com/rel-eng/RCMTOOLS/RCMTOOLS-2.0-updates-F-33-20201007.0/compose/Everything/x86_64/os/Packages/python3-brewkoji-1.24-1.fc33eng.noarch.rpm
-    sudo yum install -y terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc dbus-glib-devel gtk2-devel iso-codes-devel pciutils-devel lua-devel openssl-devel jenkins ntpdate ntp git-review nicotine+ transmission linphone sshuttle libvirt-client VirtualBox vinagre net-snmp net-snmp-utils icedtea-web tmux screen libnsl shairport-sync dnf-utils yum-utils nmap strace uptimed xdotool python3-reno libguestfs-tools python2-pyxattr python-pep8 python3-tox libpq-devel collectl mysql-server gimp meson perl-devel perl-ExtUtils-Embed libcanberra-devel dbus-glib-devel libnotify-devel libproxy-devel python3-devel python3-koji krb5-workstation koji npm chrome-gnome-shell nvidia-driver nvidia-settings flex ncurses-devel bison
+    sudo yum install -y terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc dbus-glib-devel gtk2-devel iso-codes-devel pciutils-devel lua-devel openssl-devel jenkins ntpdate ntp git-review nicotine+ transmission linphone sshuttle libvirt-client VirtualBox vinagre net-snmp net-snmp-utils icedtea-web tmux screen libnsl shairport-sync dnf-utils yum-utils nmap strace uptimed xdotool python3-reno libguestfs-tools python2-pyxattr python-pep8 python3-tox libpq-devel collectl mysql-server gimp meson perl-devel perl-ExtUtils-Embed libcanberra-devel dbus-glib-devel libnotify-devel libproxy-devel python3-devel python3-koji krb5-workstation koji npm chrome-gnome-shell nvidia-driver nvidia-settings flex ncurses-devel bison rdopkg rhpkg
     sudo cp root/.vimrc /root
     sudo cp home/dhill/.vimrc /home/dhill
     sudo cp home/dhill/.bash_profile /home/dhill
