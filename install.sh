@@ -38,6 +38,8 @@ else
     sudo systemctl enable ntpd
     sudo cp etc/pki/tls/certs/* /etc/pki/tls/certs/
     sudo cp etc/NetworkManager/system-connections/* /etc/NetworkManager/system-connections
+    export CHROME_VERSION=91.0.4472.164-1
+    sudo yum install -y https://dl.google.com/linux/chrome/rpm/stable/x86_64/google-chrome-stable-${CHROME_VERSION}.x86_64.rpm
     sudo systemctl restart NetworkManager
     rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Music/ /home/dhill/Music/
     rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Documents/ /home/dhill/Documents/
