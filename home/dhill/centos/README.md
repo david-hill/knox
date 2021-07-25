@@ -1,2 +1,2 @@
-docker build -t centos8 .
-docker run -it --privileged --net host -v /home/dhill:/home/dhill centos8
+podman build -t brew .
+podman  run  -it  --privileged -v /home/dhill:/home/dhill localhost/brew:latest  bash

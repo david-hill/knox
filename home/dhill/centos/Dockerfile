@@ -2,6 +2,7 @@ FROM centos
 COPY rcm-tools.repo /etc/yum.repos.d/rcm-tools.repo
 COPY resolv.conf /etc/resolv.conf
 COPY ca.crt /etc/pki
+COPY krb5.conf /etc/krb5.conf
 COPY RH-IT-Root-CA.crt /etc/pki/ca-trust/source/anchors/
 RUN update-ca-trust extract
 RUN cat /etc/resolv.conf
