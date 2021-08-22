@@ -63,6 +63,8 @@ else
     rm -rf tmp
     sudo cp /usr/lib64/flash-plugin/libpepflashplayer.so /usr/lib64/mozilla/plugins
     sudo cp etc/selinux/config /etc/selinux
+    sudo cp etc/sysconfig/oidentd /etc/sysconfig
+    sudo cp etc/oidentd.conf /etc/
     sudo cp etc/gdm/* /etc/gdm/
     sudo setenforce 0
     sudo systemctl enable snmpd
@@ -79,6 +81,8 @@ else
     sudo systemctl start uptimed
     sudo firewall-cmd --zone=internal --add-service snmp --permanent
     sudo firewall-cmd --zone=FedoraWorkstation --add-service snmp --permanent
+    sudo firewall-cmd --zone=internal --add-port=113/tcp --permanent
+    sudo firewall-cmd --zone=FedoraWorkstation --add-port=113/tcp --permanent
     sudo firewall-cmd --reload
     sudo usermod -G libvirt dhill
     sudo cp etc/libvirt/libvirtd.conf /etc/libvirt
