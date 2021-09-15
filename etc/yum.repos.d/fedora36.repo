@@ -1,10 +1,10 @@
-[fedora35]
-name=Fedora 35 - x86_64
+[fedora36]
+name=Fedora 36 - x86_64
 failovermethod=priority
 #baseurl=http://download.fedoraproject.org/pub/fedora/linux/releases/$releasever/Everything/$basearch/os/
-metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-35&arch=$basearch
+metalink=https://mirrors.fedoraproject.org/metalink?repo=fedora-36&arch=$basearch
 enabled=1
 metadata_expire=7d
 gpgcheck=1
-gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-35-$basearch
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-36-$basearch
 skip_if_unavailable=True
