@@ -50,6 +50,7 @@ else
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.37:/home/dhill/ /home/dhill/
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.37:/var/lib/jenkins/ /var/lib/jenkins/
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.37:/home/jenkins/ /home/jenkins/
+    sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.37:/var/lib/libvirt/images /var/lib/libvirt/images
     cd rpms
     for package in *.rpm; do
       sudo yum install -y $package
