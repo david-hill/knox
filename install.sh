@@ -46,6 +46,7 @@ else
     export CHROME_VERSION=91.0.4472.164-1
     sudo yum install -y https://dl.google.com/linux/chrome/rpm/stable/x86_64/google-chrome-stable-${CHROME_VERSION}.x86_64.rpm
     sudo systemctl restart NetworkManager
+    sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.37:/home/dhill/.ssh/ /root/.ssh/
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.37:/etc/pki/tls/certs/2015-RH-IT-ROOT-CA.pem /etc/pki/tls/certs/2015-RH-IT-ROOT-CA.pem
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.37:/home/dhill/ /home/dhill/
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.37:/var/lib/jenkins/ /var/lib/jenkins/
