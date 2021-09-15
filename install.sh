@@ -29,27 +29,26 @@ else
     sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-nvidia.repo
     sudo yum install -y https://download.devel.redhat.com/rel-eng/RCMTOOLS/RCMTOOLS-2.0-updates-F-33-20201007.0/compose/Everything/x86_64/os/Packages/brewkoji-1.24-1.fc33eng.noarch.rpm https://download.devel.redhat.com/rel-eng/RCMTOOLS/RCMTOOLS-2.0-updates-F-33-20201007.0/compose/Everything/x86_64/os/Packages/python3-brewkoji-1.24-1.fc33eng.noarch.rpm
     sudo yum install -y rhpkg
-    sudo yum install -y gdm terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc dbus-glib-devel gtk2-devel iso-codes-devel pciutils-devel lua-devel openssl-devel jenkins ntpdate ntp git-review nicotine+ transmission linphone sshuttle libvirt-client VirtualBox vinagre net-snmp net-snmp-utils icedtea-web tmux screen libnsl shairport-sync dnf-utils yum-utils nmap strace uptimed xdotool python3-reno libguestfs-tools python2-pyxattr python-pep8 python3-tox libpq-devel collectl mysql-server gimp meson perl-devel perl-ExtUtils-Embed libcanberra-devel dbus-glib-devel libnotify-devel libproxy-devel python3-devel python3-koji krb5-workstation koji npm chrome-gnome-shell nvidia-driver nvidia-settings flex ncurses-devel bison rdopkg oidentd alsa-lib-devel cargo hunspell-devel libXt-devel libcurl-devel llvm-devel nasm nss-devel nspr-devel nss-static pulseaudio-libs-devel rust startup-notification-devel yasm cups libvirt virt-viewer
+    sudo yum install -y gdm terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc dbus-glib-devel gtk2-devel iso-codes-devel pciutils-devel lua-devel openssl-devel jenkins ntpdate ntp git-review nicotine+ transmission linphone sshuttle libvirt-client VirtualBox vinagre net-snmp net-snmp-utils icedtea-web tmux screen libnsl shairport-sync dnf-utils yum-utils nmap strace uptimed xdotool python3-reno libguestfs-tools python2-pyxattr python-pep8 python3-tox libpq-devel collectl mysql-server gimp meson perl-devel perl-ExtUtils-Embed libcanberra-devel dbus-glib-devel libnotify-devel libproxy-devel python3-devel python3-koji krb5-workstation koji npm chrome-gnome-shell nvidia-driver nvidia-settings flex ncurses-devel bison rdopkg oidentd alsa-lib-devel cargo hunspell-devel libXt-devel libcurl-devel llvm-devel nasm nss-devel nspr-devel nss-static pulseaudio-libs-devel rust startup-notification-devel yasm cups libvirt virt-viewer NetworkManager-openvpn
     sudo systemctl set-default graphical
     sudo cp root/.vimrc /root
     sudo cp home/dhill/.vimrc /home/dhill
     sudo cp home/dhill/.bash_profile /home/dhill
+    sudo cp etc/ssh/sshd_config /etc/ssh
     sudo cp etc/ntp.conf /etc
     sudo cp etc/snmp/* /etc/snmp/
     sudo systemctl restart ntpd
     sudo systemctl enable ntpd
     sudo cp etc/pki/tls/certs/* /etc/pki/tls/certs/
     sudo cp etc/NetworkManager/system-connections/* /etc/NetworkManager/system-connections
+    sudo chmod 600 /etc/NetworkManager/system-connections/*
     export CHROME_VERSION=91.0.4472.164-1
     sudo yum install -y https://dl.google.com/linux/chrome/rpm/stable/x86_64/google-chrome-stable-${CHROME_VERSION}.x86_64.rpm
     sudo systemctl restart NetworkManager
-    rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Music/ /home/dhill/Music/
-    rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Documents/ /home/dhill/Documents/
-    rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Desktop/ /home/dhill/Desktop/
-    rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Pictures/ /home/dhill/Pictures/
-    rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.27:/home/dhill/Downloads/ /home/dhill/Downloads/
-    sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.27:/var/lib/jenkins/ /var/lib/jenkins/
-    sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.27:/home/jenkins/ /home/jenkins/
+    sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.37:/etc/pki/tls/certs/2015-RH-IT-ROOT-CA.pem /etc/pki/tls/certs/2015-RH-IT-ROOT-CA.pem
+    sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.37:/home/dhill/ /home/dhill/
+    sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.37:/var/lib/jenkins/ /var/lib/jenkins/
+    sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.37:/home/jenkins/ /home/jenkins/
     cd rpms
     for package in *.rpm; do
       sudo yum install -y $package
