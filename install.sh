@@ -19,6 +19,7 @@ else
 #    wget https://download.devel.redhat.com/rel-eng/RCMTOOLS/rcm-tools-fedora.repo
 #    sudo cp rcm-tools-fedora.repo /etc/yum.repos.d/
     sudo cp RH-IT-Root-CA.crt /etc/pki/ca-trust/source/anchors
+    sudo usermod -g wheel dhill
     sudo update-ca-trust extract
     sudo systemctl enable fstrim.service
     sudo systemctl start fstrim.service
