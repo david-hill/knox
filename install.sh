@@ -30,8 +30,10 @@ else
     sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-nvidia.repo
     sudo yum install -y https://download.devel.redhat.com/rel-eng/RCMTOOLS/RCMTOOLS-2.0-updates-F-33-20201007.0/compose/Everything/x86_64/os/Packages/brewkoji-1.24-1.fc33eng.noarch.rpm https://download.devel.redhat.com/rel-eng/RCMTOOLS/RCMTOOLS-2.0-updates-F-33-20201007.0/compose/Everything/x86_64/os/Packages/python3-brewkoji-1.24-1.fc33eng.noarch.rpm
     sudo yum install -y rhpkg
-    sudo yum install -y gdm terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc dbus-glib-devel gtk2-devel iso-codes-devel pciutils-devel lua-devel openssl-devel jenkins ntpdate ntp git-review nicotine+ transmission linphone sshuttle libvirt-client VirtualBox vinagre net-snmp net-snmp-utils icedtea-web tmux screen libnsl shairport-sync dnf-utils yum-utils nmap strace uptimed xdotool python3-reno libguestfs-tools python2-pyxattr python-pep8 python3-tox libpq-devel collectl mysql-server gimp meson perl-devel perl-ExtUtils-Embed libcanberra-devel dbus-glib-devel libnotify-devel libproxy-devel python3-devel python3-koji krb5-workstation koji npm chrome-gnome-shell nvidia-driver nvidia-settings flex ncurses-devel bison rdopkg oidentd alsa-lib-devel cargo hunspell-devel libXt-devel libcurl-devel llvm-devel nasm nss-devel nspr-devel nss-static pulseaudio-libs-devel rust startup-notification-devel yasm cups libvirt virt-viewer NetworkManager-openvpn NetworkManager-openvpn-gnome firefox
+    sudo yum install -y gdm terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc dbus-glib-devel gtk2-devel iso-codes-devel pciutils-devel lua-devel openssl-devel jenkins ntpdate ntp git-review nicotine+ transmission linphone sshuttle libvirt-client VirtualBox vinagre net-snmp net-snmp-utils icedtea-web tmux screen libnsl shairport-sync dnf-utils yum-utils nmap strace uptimed xdotool python3-reno libguestfs-tools python2-pyxattr python-pep8 python3-tox libpq-devel collectl mysql-server gimp meson perl-devel perl-ExtUtils-Embed libcanberra-devel dbus-glib-devel libnotify-devel libproxy-devel python3-devel python3-koji krb5-workstation koji npm chrome-gnome-shell nvidia-driver nvidia-settings flex ncurses-devel bison rdopkg oidentd alsa-lib-devel cargo hunspell-devel libXt-devel libcurl-devel llvm-devel nasm nss-devel nspr-devel nss-static pulseaudio-libs-devel rust startup-notification-devel yasm cups libvirt virt-viewer NetworkManager-openvpn NetworkManager-openvpn-gnome firefox lm_sensors alsa-utils pavucontrol pulseaudio-utils
     sudo systemctl set-default graphical
+    sudo systemctl enable libvirtd
+    sudo systemctl start libvirtd
     sudo cp root/.vimrc /root
     sudo cp home/dhill/.vimrc /home/dhill
     sudo cp home/dhill/.bash_profile /home/dhill
@@ -47,11 +49,13 @@ else
     sudo yum install -y https://dl.google.com/linux/chrome/rpm/stable/x86_64/google-chrome-stable-${CHROME_VERSION}.x86_64.rpm
     sudo systemctl restart NetworkManager
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.37:/home/dhill/.ssh/ /root/.ssh/
+    sudo chown root:root /root/.ssh -R
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.37:/etc/pki/tls/certs/2015-RH-IT-ROOT-CA.pem /etc/pki/tls/certs/2015-RH-IT-ROOT-CA.pem
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress dhill@192.168.1.37:/home/dhill/ /home/dhill/
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.37:/var/lib/jenkins/ /var/lib/jenkins/
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.37:/home/jenkins/ /home/jenkins/
     sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.37:/var/lib/libvirt/images /var/lib/libvirt/images
+    sudo rsync -avz -e "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null" --progress 192.168.1.37:/etc/libvirt/qemu/ /etc/libvirt/qemu/
     cd rpms
     for package in *.rpm; do
       sudo yum install -y $package
