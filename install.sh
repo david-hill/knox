@@ -30,7 +30,7 @@ else
     sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-nvidia.repo
     sudo yum install -y https://download.devel.redhat.com/rel-eng/RCMTOOLS/RCMTOOLS-2.0-updates-F-33-20201007.0/compose/Everything/x86_64/os/Packages/brewkoji-1.24-1.fc33eng.noarch.rpm https://download.devel.redhat.com/rel-eng/RCMTOOLS/RCMTOOLS-2.0-updates-F-33-20201007.0/compose/Everything/x86_64/os/Packages/python3-brewkoji-1.24-1.fc33eng.noarch.rpm
     sudo yum install -y rhpkg
-    sudo yum install -y gdm terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc dbus-glib-devel gtk2-devel iso-codes-devel pciutils-devel lua-devel openssl-devel jenkins ntpdate ntp git-review nicotine+ transmission linphone sshuttle libvirt-client VirtualBox vinagre net-snmp net-snmp-utils icedtea-web tmux screen libnsl shairport-sync dnf-utils yum-utils nmap strace uptimed xdotool python3-reno libguestfs-tools python2-pyxattr python-pep8 python3-tox libpq-devel collectl mysql-server gimp meson perl-devel perl-ExtUtils-Embed libcanberra-devel dbus-glib-devel libnotify-devel libproxy-devel python3-devel python3-koji krb5-workstation koji npm chrome-gnome-shell nvidia-driver nvidia-settings flex ncurses-devel bison rdopkg oidentd alsa-lib-devel cargo hunspell-devel libXt-devel libcurl-devel llvm-devel nasm nss-devel nspr-devel nss-static pulseaudio-libs-devel rust startup-notification-devel yasm cups libvirt virt-viewer NetworkManager-openvpn NetworkManager-openvpn-gnome firefox lm_sensors alsa-utils pavucontrol pulseaudio-utils gedit libreoffice xorg-x11-xfs-utils xorg-x11-xfs gnome-themes gdb libselinux-python libsemanage-python ansible facter hiera gnome-extensions-app
+    sudo yum install -y gdm terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc dbus-glib-devel gtk2-devel iso-codes-devel pciutils-devel lua-devel openssl-devel jenkins ntpdate ntp git-review nicotine+ transmission linphone sshuttle libvirt-client VirtualBox vinagre net-snmp net-snmp-utils icedtea-web tmux screen libnsl shairport-sync dnf-utils yum-utils nmap strace uptimed xdotool python3-reno libguestfs-tools python2-pyxattr python-pep8 python3-tox libpq-devel collectl mysql-server gimp meson perl-devel perl-ExtUtils-Embed libcanberra-devel dbus-glib-devel libnotify-devel libproxy-devel python3-devel python3-koji krb5-workstation koji npm chrome-gnome-shell nvidia-driver nvidia-settings flex ncurses-devel bison rdopkg oidentd alsa-lib-devel cargo hunspell-devel libXt-devel libcurl-devel llvm-devel nasm nss-devel nspr-devel nss-static pulseaudio-libs-devel rust startup-notification-devel yasm cups libvirt virt-viewer NetworkManager-openvpn NetworkManager-openvpn-gnome firefox lm_sensors alsa-utils pavucontrol pulseaudio-utils gedit libreoffice xorg-x11-xfs-utils xorg-x11-xfs gnome-themes gdb libselinux-python libsemanage-python ansible facter hiera gnome-extensions-app snapd gnome-tweaks perf
     sudo yum groupinstall -y Fonts
     sudo yum groupinstall -y 'GNOME Desktop Environment'
     sudo yum install -y https://zoom.us/client/latest/zoom_x86_64.rpm
@@ -73,11 +73,14 @@ else
     echo "Y" | sudo tmp/./linux-brprinter-installer-2.2.0-1 dcp-7030
     rm -rf tmp
     sudo cp /usr/lib64/flash-plugin/libpepflashplayer.so /usr/lib64/mozilla/plugins
+    sudo cp usr/share/applications/icq.desktop /usr/share/applications/icq.desktop
     sudo cp etc/selinux/config /etc/selinux
     sudo cp etc/sysconfig/oidentd /etc/sysconfig
     sudo cp etc/oidentd.conf /etc/
     sudo cp etc/gdm/* /etc/gdm/
     sudo setenforce 0
+    sudo systemctl enable snapd
+    sudo systemctl start snapd
     sudo systemctl enable snmpd
     sudo systemctl start snmpd
     sudo systemctl enable jenkins
@@ -101,4 +104,5 @@ else
     sudo cp usr/lib/jvm/java-1.8.0-openjdk-1.8.0.192.b12-0.fc30.x86_64/jre/lib/security/java.security /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.192.b12-0.fc30.x86_64/jre/lib/security/java.security
     sudo cp etc/crypto-policies/back-ends/java.config /etc/crypto-policies/back-ends/java.config
     sudo cp usr/bin/google-chrome /usr/bin/google-chrome
+    sudo snap install icq-im
 fi
