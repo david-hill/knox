@@ -27,6 +27,7 @@ else
     sudo hostnamectl set-hostname knox.orion
     sudo yum install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-rawhide.noarch.rpm
     sudo yum install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-rawhide.noarch.rpm
+    sudo yum install -y https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
     sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-nvidia.repo
     sudo yum install -y https://download.devel.redhat.com/rel-eng/RCMTOOLS/RCMTOOLS-2.0-updates-F-33-20201007.0/compose/Everything/x86_64/os/Packages/brewkoji-1.24-1.fc33eng.noarch.rpm https://download.devel.redhat.com/rel-eng/RCMTOOLS/RCMTOOLS-2.0-updates-F-33-20201007.0/compose/Everything/x86_64/os/Packages/python3-brewkoji-1.24-1.fc33eng.noarch.rpm
     sudo yum install -y rhpkg
