@@ -1,0 +1,6 @@
+{
+
+     "AuthServerAllowlist": "*.redhat.com",
+     "DisableAuthNegotiateCnameLookup" : true
+
+}
