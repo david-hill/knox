@@ -16,6 +16,8 @@ if ! $(grep -qi rawhide /etc/redhat-release) ; then
     sudo dnf system-upgrade reboot # https://bugzilla.redhat.com/show_bug.cgi?id=1612547
 else
     wget https://password.corp.redhat.com/RH-IT-Root-CA.crt
+    wget https://certs.corp.redhat.com/certs/2022-IT-Root-CA.pem
+    wget https://certs.corp.redhat.com/certs/Current-IT-Root-CAs.pem
 #    wget https://download.devel.redhat.com/rel-eng/RCMTOOLS/rcm-tools-fedora.repo
 #    sudo cp rcm-tools-fedora.repo /etc/yum.repos.d/
     sudo cp RH-IT-Root-CA.crt /etc/pki/ca-trust/source/anchors
@@ -26,13 +28,14 @@ else
     sudo timedatectl set-timezone America/Montreal
     sudo hostnamectl set-hostname knox.orion
     sudo yum install -y https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-rawhide.noarch.rpm
+    sudo yum install -y https://github.com/ringcentral/ringcentral-community-app/releases/download/v0.0.11/ringcentral-community-app-0.0.11.x86_64.rpm
     sudo yum install -y https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-rawhide.noarch.rpm
     sudo yum install -y https://download.teamviewer.com/download/linux/teamviewer.x86_64.rpm
     sudo yum install -y https://binaries.webex.com/WebexDesktop-CentOS-Official-Package/Webex.rpm --nogpgcheck
     sudo dnf config-manager --add-repo=https://negativo17.org/repos/fedora-nvidia.repo
     sudo yum install -y https://download.devel.redhat.com/rel-eng/RCMTOOLS/RCMTOOLS-2.0-updates-F-33-20201007.0/compose/Everything/x86_64/os/Packages/brewkoji-1.24-1.fc33eng.noarch.rpm https://download.devel.redhat.com/rel-eng/RCMTOOLS/RCMTOOLS-2.0-updates-F-33-20201007.0/compose/Everything/x86_64/os/Packages/python3-brewkoji-1.24-1.fc33eng.noarch.rpm
     sudo yum install -y rhpkg
-    sudo yum install -y gdm terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc dbus-glib-devel gtk2-devel iso-codes-devel pciutils-devel lua-devel openssl-devel ntpdate ntp git-review nicotine+ transmission linphone sshuttle libvirt-client VirtualBox vinagre net-snmp net-snmp-utils icedtea-web tmux screen libnsl shairport-sync dnf-utils yum-utils nmap strace uptimed xdotool python3-reno libguestfs-tools python2-pyxattr python-pep8 python3-tox libpq-devel collectl mysql-server gimp meson perl-devel perl-ExtUtils-Embed libcanberra-devel dbus-glib-devel libnotify-devel libproxy-devel python3-devel python3-koji krb5-workstation koji npm chrome-gnome-shell nvidia-driver nvidia-settings flex ncurses-devel bison rdopkg oidentd alsa-lib-devel cargo hunspell-devel libXt-devel libcurl-devel llvm-devel nasm nss-devel nspr-devel nss-static pulseaudio-libs-devel rust startup-notification-devel yasm cups libvirt virt-viewer NetworkManager-openvpn NetworkManager-openvpn-gnome firefox lm_sensors alsa-utils pavucontrol pulseaudio-utils gedit libreoffice xorg-x11-xfs-utils xorg-x11-xfs gnome-themes gdb libselinux-python libsemanage-python ansible facter hiera gnome-extensions-app snapd gnome-tweaks perf gtkglext-libs
+    sudo yum install -y gdm terminator vim google-chrome slack skypeforlinux vlc hexchat thunderbird rdesktop virt-manager rpm-build gcc dbus-glib-devel gtk2-devel iso-codes-devel pciutils-devel lua-devel openssl-devel ntpdate ntp git-review nicotine+ transmission linphone sshuttle libvirt-client VirtualBox vinagre net-snmp net-snmp-utils icedtea-web tmux screen libnsl shairport-sync dnf-utils yum-utils nmap strace uptimed xdotool python3-reno libguestfs-tools python2-pyxattr python-pep8 python3-tox libpq-devel collectl mysql-server gimp meson perl-devel perl-ExtUtils-Embed libcanberra-devel dbus-glib-devel libnotify-devel libproxy-devel python3-devel python3-koji krb5-workstation koji npm chrome-gnome-shell nvidia-driver nvidia-settings flex ncurses-devel bison rdopkg oidentd alsa-lib-devel cargo hunspell-devel libXt-devel libcurl-devel llvm-devel nasm nss-devel nspr-devel nss-static pulseaudio-libs-devel rust startup-notification-devel yasm cups libvirt virt-viewer NetworkManager-openvpn NetworkManager-openvpn-gnome firefox lm_sensors alsa-utils pavucontrol pulseaudio-utils gedit libreoffice xorg-x11-xfs-utils xorg-x11-xfs gnome-themes gdb libselinux-python libsemanage-python ansible facter hiera gnome-extensions-app snapd gnome-tweaks perf gtkglext-libs wine-core iotop yubikey-personalization-gui
     sudo rpm -ivh --nodeps http://rpm.anydesk.com/fedora/x86_64/Packages/anydesk_6.2.0-1_x86_64.rpm
     sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat/jenkins.repo
     sudo rpm --import https://pkg.jenkins.io/redhat/jenkins.io.key
@@ -104,6 +107,12 @@ else
     sudo firewall-cmd --zone=FedoraWorkstation --add-service snmp --permanent
     sudo firewall-cmd --zone=internal --add-port=113/tcp --permanent
     sudo firewall-cmd --zone=FedoraWorkstation --add-port=113/tcp --permanent
+    sudo firewall-cmd --zone=internal --add-port=161/tcp --permanent
+    sudo firewall-cmd --zone=FedoraWorkstation --add-port=161/tcp --permanent
+    sudo firewall-cmd --zone=FedoraServer --add-port=161/tcp --permanent
+    sudo firewall-cmd --zone=internal --add-port=161/udp --permanent
+    sudo firewall-cmd --zone=FedoraWorkstation --add-port=161/udp --permanent
+    sudo firewall-cmd --zone=FedoraServer --add-port=161/udp --permanent
     sudo firewall-cmd --reload
     sudo usermod -G libvirt dhill
     sudo cp etc/libvirt/libvirtd.conf /etc/libvirt
@@ -113,6 +122,7 @@ else
     sudo cp usr/bin/google-chrome /usr/bin/google-chrome
     sudo snap install icq-im
     sudo snap install whatsdesk
+    sudo snap install skype
     sudo cp /var/lib/snapd/snap/whatsdesk/current/meta/gui/icon.png /usr/share/pixmaps/whatsapp.png
     sudo cp usr/share/applications/whatsapp.desktop /usr/share/applications/whatsapp.desktop
     sudo cp usr/share/applications/whatsapp.desktop /home/dhill/.config/autostart
