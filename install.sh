@@ -15,9 +15,9 @@ if ! $(grep -qi rawhide /etc/redhat-release) ; then
     ls  | sort -k1,1V | grep x86_64 | tail -1  | xargs -I% sudo ln -s % RPM-GPG-KEY-fedora-rawhide-x86_64
     sudo dnf system-upgrade reboot # https://bugzilla.redhat.com/show_bug.cgi?id=1612547
 else
-    wget https://password.corp.redhat.com/RH-IT-Root-CA.crt
-    wget https://certs.corp.redhat.com/certs/2022-IT-Root-CA.pem
-    wget https://certs.corp.redhat.com/certs/Current-IT-Root-CAs.pem
+    wget https://password.corp.redhat.com/RH-IT-Root-CA.crt -O /etc/pki/ca-trust/source/anchors/RH-IT-Root-CA.crt
+    wget https://certs.corp.redhat.com/certs/2022-IT-Root-CA.pem -O /etc/pki/ca-trust/source/anchors/2022-IT-Root-CA.pem
+    wget https://certs.corp.redhat.com/certs/Current-IT-Root-CAs.pem -O /etc/pki/ca-trust/source/anchors/Current-IT-Root-CAs.pem
 #    wget https://download.devel.redhat.com/rel-eng/RCMTOOLS/rcm-tools-fedora.repo
 #    sudo cp rcm-tools-fedora.repo /etc/yum.repos.d/
     sudo cp RH-IT-Root-CA.crt /etc/pki/ca-trust/source/anchors
