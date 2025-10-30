@@ -65,4 +65,5 @@ zcat $case/$sqlfile | mysql -uroot -proot -h $hostname -P $index
 notify-send "Database is ready!" '\\o/'
 
 echo podman exec -it mariadb_$case mysql -uroot -proot -h mariadb_$case >> start_$case
-echo mysql -uroot -proot -h $hostname -P $index
+echo mysql -uroot -proot -h $hostname -P $index >> start_$case
+
