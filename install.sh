@@ -123,6 +123,7 @@ else
     sudo snap install icq-im
     sudo snap install whatsdesk
     sudo snap install skype
+    sudo snap install signal-desktop
     sudo cp /var/lib/snapd/snap/whatsdesk/current/meta/gui/icon.png /usr/share/pixmaps/whatsapp.png
     sudo cp usr/share/applications/whatsapp.desktop /usr/share/applications/whatsapp.desktop
     sudo cp usr/share/applications/whatsapp.desktop /home/dhill/.config/autostart
